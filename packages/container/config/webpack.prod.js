@@ -12,6 +12,12 @@ const prodConfig = {
   mode: "production",
   output: {
     filename: "[name].[contenthash].js",
+    // public path is going to be used any time you have
+    // part of webpack that tries to refer to a file that
+    // has been built by webpack, eg when html plug in refers
+    // to file that has been built by webpack,
+    // prepends the script tags for the URL S3 bucket properly
+    publicPath: "/container/latest/",
   },
   plugins: [
     new ModuleFederationPlugin({
