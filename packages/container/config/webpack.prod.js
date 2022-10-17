@@ -5,6 +5,7 @@ const commonConfig = require("./webpack.common");
 const packageJson = require("../package.json");
 
 const domain = process.env.PRODUCTION_DOMAIN;
+// this gets exposed in the .githut/workflows/container build section
 // this will be set up when the CI/CD pipeline is built
 // is a string that we get from our AWS service
 
@@ -25,7 +26,7 @@ const prodConfig = {
       name: "container",
       //   where we get teh source code from
       remotes: {
-        marketing: `marketing@${domain}/marketing/remoteEntry.js`,
+        marketing: `marketing@${domain}/marketing/latest/remoteEntry.js`,
       },
       shared: packageJson.dependencies,
     }),
