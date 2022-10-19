@@ -5,12 +5,12 @@ import {
   createGenerateClassName,
 } from "@material-ui/core/styles";
 
-import Landing from "./components/Landing";
-import Pricing from "./components/Pricing";
-
 const generateClassName = createGenerateClassName({
-  productionPrefix: "ma",
+  productionPrefix: "au",
 });
+
+import Signin from "./components/Signin";
+import Signup from "./components/Signup";
 
 // we want to distinguish between using browser history (top level)
 // and memory history objects in our projects. See lecture 90 in the video
@@ -19,14 +19,18 @@ const generateClassName = createGenerateClassName({
 // as BrowserRouter does, so we must provide the history
 // we will provide it in the bootstrap file
 
-export default ({ history }) => {
+export default ({ history, onSignIn }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
           <Switch>
-            <Route exact path="/pricing" component={Pricing} />
-            <Route path="/" component={Landing} />
+            <Route path="/auth/signin">
+              <Signin onSignIn={onSignIn} />
+            </Route>
+            <Route path="/auth/signup">
+              <Signup onSignIn={onSignIn} />
+            </Route>
           </Switch>
         </Router>
       </StylesProvider>

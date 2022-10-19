@@ -1,4 +1,4 @@
-import { mount } from "marketing/MarketingApp";
+import { mount } from "auth/AuthApp";
 // MarketingApp is exposed in the webpack config file
 // mount is a FUNCTION that takes reference to an html element
 // we do NOT want it to be a react component, because this could be implemented
@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 
 // this same pattern applies to any other framework,
 // Angular, or Vue as well
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
 
   const history = useHistory();
@@ -28,6 +28,7 @@ export default () => {
           history.push(nextPathname);
         }
       },
+      onSignIn,
     });
 
     history.listen(onParentNavigate);
